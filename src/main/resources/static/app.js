@@ -13,19 +13,19 @@ const userFetchService = {
         'Referer': null
     },
 
-    findAllUsers: async () => await fetch('api/users'),
+    findAllUsers: async () => await fetch('api/admin'),
     findUser : async () => await fetch('api/user'),
-    addNewUser: async (user) => await fetch('api/users', {
+    addNewUser: async (user) => await fetch('api/admin', {
         method: 'POST',
         headers: userFetchService.head,
         body: JSON.stringify(user)
     }),
-    showOneUser: async (id) => await fetch(`api/users/${id}`),
-    deleteUser: async (id) => await fetch(`api/users/${id}`, {
+    showOneUser: async (id) => await fetch(`api/admin/${id}`),
+    deleteUser: async (id) => await fetch(`api/admin/${id}`, {
         method: 'DELETE',
         headers: userFetchService.head
     }),
-    updateUser: async (user) => await fetch('api/users', {
+    updateUser: async (user) => await fetch('api/admin', {
         method: 'PUT',
         headers: userFetchService.head,
         body: JSON.stringify(user)
@@ -156,8 +156,6 @@ async function getDefaultModal() {
         let thisModal = $(event.target);
         let userid = thisModal.attr('data-userid');
         let action = thisModal.attr('data-action');
-        // $(this).before($('.modal-backdrop'));
-        // $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
         switch (action) {
             case 'edit':
                 editUser(thisModal, userid);

@@ -53,7 +53,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (updatedUser.getRoles().size() == 0) {
             updatedUser.addRole(roleDao.findRoleByName("USER"));
         }
-        updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        if (updatedUser.getPassword().startsWith("$2a$10$") && updatedUser.getPassword().length() == 60){
+            updatedUser.setPassword(updatedUser.getPassword());
+        } else {
+            updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        }
         userDao.updateUser(updatedUser);
     }
 

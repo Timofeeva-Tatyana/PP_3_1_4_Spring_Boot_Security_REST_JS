@@ -7,20 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.model.User;
 
 @Controller
-public class AdminController {
+public class UserController {
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/admin")
-    public String index(Model model) {
-        User thisUser = (User) SecurityContextHolder.getContext()
+    @GetMapping("/user")
+    public String userHomePage(Model model) {
+        User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
-        model.addAttribute("thisUser", thisUser);
-        return "admin_panel";
+        model.addAttribute("user", user);
+        return "user_panel";
     }
-
-
 }

@@ -12,16 +12,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MyRestController {
+public class AdminRestController {
     private final UserService userService;
     private final RoleService roleService;
 
-    public MyRestController(UserService userService, RoleService roleService) {
+    public AdminRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/admin")
     public List <User> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -31,14 +31,14 @@ public class MyRestController {
         return roleService.getAllRoles();
     }
 
-    @GetMapping("/user")
-    public User getPrincipalUser() {
-        User thisUser = (User) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-        return thisUser;
-    }
+//    @GetMapping("/user")
+//    public User getPrincipalUser() {
+//        User thisUser = (User) SecurityContextHolder.getContext()
+//                .getAuthentication().getPrincipal();
+//        return thisUser;
+//    }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/admin/{id}")
     public User getUsers(@PathVariable Long id) {
         User user = userService.findUserById(id);
         if (user == null) {
@@ -48,19 +48,19 @@ public class MyRestController {
         return user;
     }
 
-    @PostMapping("/users")
+    @PostMapping("/admin")
     public User addNewUser(@RequestBody User user) {
         userService.saveUser(user);
         return user;
     }
 
-    @PutMapping("/users")
+    @PutMapping("/admin")
     public User updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return user;
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/admin/{id}")
     public String deleteUser(@PathVariable Long id) {
         User user = userService.findUserById(id);
         if (user == null) {
