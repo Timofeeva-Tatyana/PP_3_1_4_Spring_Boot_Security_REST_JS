@@ -1,6 +1,5 @@
 package ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.controller;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.exception_handling.NoSuchUserException;
 import ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.model.Role;
@@ -30,13 +29,6 @@ public class AdminRestController {
     public List <Role> getAllRoles() {
         return roleService.getAllRoles();
     }
-
-//    @GetMapping("/user")
-//    public User getPrincipalUser() {
-//        User thisUser = (User) SecurityContextHolder.getContext()
-//                .getAuthentication().getPrincipal();
-//        return thisUser;
-//    }
 
     @GetMapping("/admin/{id}")
     public User getUsers(@PathVariable Long id) {
