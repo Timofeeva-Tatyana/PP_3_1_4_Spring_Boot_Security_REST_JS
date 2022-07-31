@@ -14,7 +14,7 @@ const userFetchService = {
     },
 
     findAllUsers: async () => await fetch('api/admin'),
-    findUser : async () => await fetch('api/user'),
+    findUser : async () => await fetch('principalUser'),
     addNewUser: async (user) => await fetch('api/admin', {
         method: 'POST',
         headers: userFetchService.head,
@@ -325,6 +325,8 @@ async function editUser(modal, id) {
 
 
 }
+
+
 
 
 

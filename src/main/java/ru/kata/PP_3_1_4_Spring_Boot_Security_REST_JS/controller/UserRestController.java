@@ -8,7 +8,7 @@ import ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.model.User;
 import ru.kata.PP_3_1_4_Spring_Boot_Security_REST_JS.service.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/principalUser")
 public class UserRestController {
     private final UserService userService;
 
@@ -16,7 +16,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping
     public User getPrincipalUser() {
         return (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
